@@ -1,20 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, Typography, Button, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
+import { commerce } from '../../lib/commerce';
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
+import { setCart, fetchCart } from '../../store/actions';
 
-const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
+const Cart = () => {
+  const cart = useSelector((state) => state.cart);
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+ 
   const handleEmptyCart = () => onEmptyCart();
+  
+  const onUpdateCartQty = async (lineItemId, quantity) => {
+    const response = await commerce.cart.update(lineItemId, { quantity });
+
+    dispatch(setCart(response.cart));
+  };
+
+  const onRemoveFromCart = async (lineItemId) => {
+    const response = await commerce.cart.remove(lineItemId);
+
+    dispatch(setCart(response.cart));
+  };
+
+  const onEmptyCart = async () => {
+    const response = await commerce.cart.empty();
+
+    dispatch(setCart(response.cart));
+  };
 
   const renderEmptyCart = () => (
     <Typography variant="subtitle1">You have no items in your shopping cart,
       <Link className={classes.link} to="/">start adding some</Link>!
     </Typography>
   );
+
+  
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, [ dispatch ]);
 
   if (!cart.line_items) return 'Loading';
 

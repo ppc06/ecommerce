@@ -10,4 +10,10 @@ export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  previewMedia: {
+    width: 300,
+    height: 300,
+    marginRight: 'auto',
+    marginLeft: 'auto'
+  }
 }));
