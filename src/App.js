@@ -34,11 +34,9 @@ const App = ({ history }) => {
 
   useEffect(() => {
     // Fetch Proudcts and Cart From Commerce.js When only Authorized
-    let authUser = JSON.parse(localStorage.getItem('authUser'));
-    if(authUser){
-      dispatch(fetchProducts());
-      dispatch(fetchCart());
-    }
+    dispatch(fetchProducts());
+    dispatch(fetchCart());
+
   }, [dispatch]);
 
   return (

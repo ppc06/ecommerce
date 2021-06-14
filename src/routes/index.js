@@ -8,14 +8,14 @@ import PreviewProduct from "../components/Products/PreviewProduct";
 // Authorized Pages
 const authProtectedRoutes = [
   // Home
-  { path: "/cart", component: Cart },
-  { path: "/checkout", component: Checkout },
-  { path: "/product/:id", component: PreviewProduct },
-  { path: "/products", component: Products },
 ];
 
 // None Authorized pages
 const publicRoutes = [
+  { path: "/cart", component: Cart },
+  { path: "/checkout", component: Checkout },
+  { path: "/product/:id", component: PreviewProduct },
+  { path: "/products", component: Products },
   { path: "/auth", component: Auth },
   { path: "/", component: Home },
 ];
