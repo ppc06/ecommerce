@@ -10,7 +10,6 @@ const Product = ({match, history}) => {
     const [quality, setQuality] = useState(1);
     const products = useSelector((state) => state.products);
     const classes = useStyles();
-    const qualityRef = useRef();
     const dispatch = useDispatch();
 
     const product = products.find(p => p.id == match.params.id);
@@ -20,7 +19,7 @@ const Product = ({match, history}) => {
     const other_products = product.related_products.slice(0, 4);
 
     const handleAddToCart = async () => {
-        await commerce.cart.add(product.id, qualityRef.current.value);
+        await commerce.cart.add(product.id, quality);
         dispatch(fetchCart());
     };
 

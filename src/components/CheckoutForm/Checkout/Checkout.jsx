@@ -6,12 +6,15 @@ import { commerce } from '../../../lib/commerce';
 import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
 import useStyles from './styles';
+import {fetchCart, setCart} from "../../../store/actions";
+import {useDispatch, useSelector} from "react-redux";
 
 const steps = ['Shipping address', 'Payment details'];
 
 const Checkout = () => {
-  
-  const [cart, setCart] = useState({});
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   const [order, setOrder] = useState({});
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
@@ -27,7 +30,7 @@ const Checkout = () => {
   const refreshCart = async () => {
     const newCart = await commerce.cart.refresh();
 
-    setCart(newCart);
+    dispatch(setCart(newCart));
   };
 
   const onCaptureCheckout = async (checkoutTokenId, newOrder) => {
@@ -56,8 +59,10 @@ const Checkout = () => {
       };
 
       generateToken();
+    } else {
+      dispatch(fetchCart());
     }
-  }, [cart]);
+  }, [cart, dispatch]);
 
   const test = (data) => {
     setShippingData(data);

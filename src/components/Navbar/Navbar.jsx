@@ -18,7 +18,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
               </ul>
             </nav>
             <Typography component={Link} to="/"><img src={require("../../assets/user3.svg")} className="user-icon"/></Typography>
-            <Typography component={Link} to="/"><img src={require("../../assets/bag.png")} className="cart-icon"/></Typography>
+            <Typography component={Link} to="/cart"><img src={require("../../assets/bag.png")} className="cart-icon"/></Typography>
             <Typography component={Link} to="/cart">
               <Badge badgeContent={totalItems} color="secondary">
                 <img src={require("../../assets/menu.png")} className="menu-icon"/>
