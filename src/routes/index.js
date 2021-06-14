@@ -1,6 +1,6 @@
 // Authentication related pages
-import Login from "../components/Auth/Login";
-import Register from "../components/Auth/Register";
+import Home from "../components/Home/Index";
+import Auth from "../components/Auth/Index";
 
 import { Products, Cart, Checkout } from '../components';
 import PreviewProduct from "../components/Products/PreviewProduct";
@@ -11,13 +11,13 @@ const authProtectedRoutes = [
   { path: "/cart", component: Cart },
   { path: "/checkout", component: Checkout },
   { path: "/product/:id", component: PreviewProduct },
-  { path: "/", component: Products },
+  { path: "/products", component: Products },
 ];
 
 // None Authorized pages
 const publicRoutes = [
-  { path: "/login", component: Login },
-  { path: "/register", component: Register },
+  { path: "/auth", component: Auth },
+  { path: "/", component: Home },
 ];
 
 export { authProtectedRoutes, publicRoutes };

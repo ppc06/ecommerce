@@ -11,21 +11,21 @@ const AppRoute = ({
     render={props => {
 
       const getAuthenticatedToken = () => {
-        if (!localStorage.getItem("token")) return null;
-        return localStorage.getItem("token");
+        if (!localStorage.getItem("authUser")) return null;
+        return JSON.parse(localStorage.getItem("authUser"));
       };
-      const authToken = getAuthenticatedToken();
+      const authUser = getAuthenticatedToken();
       
       // Goto Login When not authorized
-      if (isAuthProtected && !authToken) {
+      if (isAuthProtected && !authUser) {
         return (
           <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
+            to={{ pathname: "/auth", state: { from: props.location } }}
           />
         );
 
         // Goto Home When authorized
-      } else if(!isAuthProtected && authToken){
+      } else if(rest.path === '/auth' && authUser){
         return (
           <Redirect
             to={{ pathname: "/", state: { from: props.location } }}
@@ -33,7 +33,7 @@ const AppRoute = ({
         );
       }
 
-      console.log('isAuth', isAuthProtected);
+      console.log('isAuth', isAuthProtected, rest.path);
       return (
         <Component {...props}/>
       );

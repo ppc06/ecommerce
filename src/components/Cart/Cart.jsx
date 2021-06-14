@@ -1,77 +1,90 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Container, Typography, Button, Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {Container, Typography, Button, Grid} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 
-import { commerce } from '../../lib/commerce';
+import {commerce} from '../../lib/commerce';
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
-import { setCart, fetchCart } from '../../store/actions';
+import {setCart, fetchCart} from '../../store/actions';
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);
-  const classes = useStyles();
-  const dispatch = useDispatch();
- 
-  const handleEmptyCart = () => onEmptyCart();
-  
-  const onUpdateCartQty = async (lineItemId, quantity) => {
-    const response = await commerce.cart.update(lineItemId, { quantity });
+    const cart = useSelector((state) => state.cart);
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
-    dispatch(setCart(response.cart));
-  };
+    const handleEmptyCart = () => onEmptyCart();
 
-  const onRemoveFromCart = async (lineItemId) => {
-    const response = await commerce.cart.remove(lineItemId);
+    const onUpdateCartQty = async (lineItemId, quantity) => {
+        const response = await commerce.cart.update(lineItemId, {quantity});
 
-    dispatch(setCart(response.cart));
-  };
+        dispatch(setCart(response.cart));
+    };
 
-  const onEmptyCart = async () => {
-    const response = await commerce.cart.empty();
+    const onRemoveFromCart = async (lineItemId) => {
+        const response = await commerce.cart.remove(lineItemId);
 
-    dispatch(setCart(response.cart));
-  };
+        dispatch(setCart(response.cart));
+    };
 
-  const renderEmptyCart = () => (
-    <Typography variant="subtitle1">You have no items in your shopping cart,
-      <Link className={classes.link} to="/">start adding some</Link>!
-    </Typography>
-  );
+    const onEmptyCart = async () => {
+        const response = await commerce.cart.empty();
 
-  
-  useEffect(() => {
-    dispatch(fetchCart());
-  }, [ dispatch ]);
+        dispatch(setCart(response.cart));
+    };
 
-  if (!cart.line_items) return 'Loading';
+    const renderEmptyCart = () => (
+        <Typography variant="subtitle1">You have no items in your shopping cart,
+            <Link className={classes.link} to="/">start adding some</Link>!
+        </Typography>
+    );
 
-  const renderCart = () => (
-    <>
-      <Grid container spacing={3}>
-        {cart.line_items.map((lineItem) => (
-          <Grid item xs={12} sm={4} key={lineItem.id}>
-            <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
-          </Grid>
-        ))}
-      </Grid>
-      <div className={classes.cardDetails}>
-        <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
-        <div>
-          <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>Empty cart</Button>
-          <Button className={classes.checkoutButton} component={Link} to="/checkout" size="large" type="button" variant="contained" color="primary">Checkout</Button>
+
+    useEffect(() => {
+        dispatch(fetchCart());
+    }, [dispatch]);
+
+    if (!cart.line_items) return 'Loading';
+
+    const renderCart = () => (
+        <div className="bottom-container cart-page">
+            <table>
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                {cart.line_items.map((lineItem, index) => (
+                    <tr key={index}>
+                        <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty}
+                                  onRemoveFromCart={onRemoveFromCart}/>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            <div className={classes.cardDetails}>
+                <div className="total">
+                    <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
+                </div>
+                <div>
+                    <Button className={classes.emptyButton} size="large" type="button" variant="contained"
+                            color="secondary" onClick={handleEmptyCart}>Empty cart</Button>
+                    <Button className={classes.checkoutButton} component={Link} to="/checkout" size="large"
+                            type="button" variant="contained" color="primary">Checkout</Button>
+                </div>
+            </div>
         </div>
-      </div>
-    </>
-  );
+    );
 
-  return (
-    <Container>
-      <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
-      { !cart.line_items.length ? renderEmptyCart() : renderCart() }
-    </Container>
-  );
+    return (
+        <Container>
+            <p className="title">CART</p>
+            {!cart.line_items.length ? renderEmptyCart() : renderCart()}
+        </Container>
+    );
 };
 
 export default Cart;

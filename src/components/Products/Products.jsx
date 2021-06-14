@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Button } from '@material-ui/core';
 
@@ -17,11 +17,6 @@ const Products = ({history}) => {
     await commerce.cart.add(productId, quantity);
     dispatch(fetchCart());
   };
-
-  const onLogout = () => {
-    localStorage.removeItem('token');
-    history.replace('/login');
-  }
   
   useEffect(() => {
     dispatch(fetchProducts());
@@ -32,7 +27,7 @@ const Products = ({history}) => {
 
   return (
     <main className={classes.content}>
-      <div className={classes.toolbar} />
+      <p className="title">ALL PRODUCTS</p>
       <Grid container justify="center" spacing={4}>
         {products.map((product) => (
           <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
@@ -40,7 +35,6 @@ const Products = ({history}) => {
           </Grid>
         ))}
       </Grid>
-      <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={onLogout}>logout</Button>
     </main>
   );
 };
