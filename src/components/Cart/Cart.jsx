@@ -35,7 +35,7 @@ const Cart = () => {
 
     const renderEmptyCart = () => (
         <Typography variant="subtitle1">You have no items in your shopping cart,
-            <Link className={classes.link} to="/">start adding some</Link>!
+            <Link className={classes.link} to="/">start adding some!</Link>
         </Typography>
     );
 
@@ -81,7 +81,7 @@ const Cart = () => {
 
     return (
         <Container>
-            <p className="title">CART</p>
+            <h2 className="title">Cart</h2>
             {!cart.line_items.length ? renderEmptyCart() : renderCart()}
         </Container>
     );

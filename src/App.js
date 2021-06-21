@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {CssBaseline} from '@material-ui/core';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import firebase from "firebase/app";
+import Footer from './components/Footer/Footer';
 
 // Import Routes
 import { authProtectedRoutes, publicRoutes } from "./routes/";
@@ -40,6 +41,7 @@ const App = ({ history }) => {
   }, [dispatch]);
 
   return (
+    <div>
       <Router>
         <div className="container">
           <CssBaseline />
@@ -64,6 +66,8 @@ const App = ({ history }) => {
           </Switch>
         </div>
       </Router>
+      <Footer />
+      </div>
   );
 };
 

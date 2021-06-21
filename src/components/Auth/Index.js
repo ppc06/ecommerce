@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from "@material-ui/core";
 import {fetchCart, fetchProducts} from "../../store/actions";
 import {useDispatch} from "react-redux";
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 const Auth = ({history}) => {
     const [email, setEmail] = useState("");
@@ -77,8 +77,6 @@ const Auth = ({history}) => {
 
     return (
         <div>
-            <p className="title">ACCOUNT</p>
-            
             <div className="account">
                 <div className="form-container">
                     <div className="form-btn">

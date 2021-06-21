@@ -30,7 +30,7 @@ const CartItem = ({item, onUpdateCartQty, onRemoveFromCart}) => {
                             onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)}>+</Button>
                 </div>
             </td>
-            <td>${item.price.formatted}</td>
+            <td>{item.price.formatted_with_symbol}</td>
         </>
     );
 };
