@@ -13,7 +13,6 @@ const PrimarySearchAppBar = ({ totalItems }) => {
             <nav>
               <ul id="MenuItems">
                 <li><Link to="/products">SHOP ALL</Link></li>
-                <li><Link to="/">BRANDS</Link></li>
                 <li><Link to="/">SKIN TYPES</Link></li>
               </ul>
             </nav>
