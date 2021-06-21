@@ -64,9 +64,14 @@ const Checkout = () => {
     }
   }, [cart, dispatch]);
 
-  const test = (data) => {
-    setShippingData(data);
-
+  const onSetShippingData = (data) => {
+    const shipping_method = checkoutToken.shipping_methods.find(m => m.id === data.shippingOption);
+    const shippingData = {
+      ...data,
+      shipping_method
+    }
+    setShippingData(shippingData);
+    console.log('shipping dta', data);
     nextStep();
   };
 
@@ -97,7 +102,7 @@ const Checkout = () => {
   }
 
   const Form = () => (activeStep === 0
-    ? <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={setShippingData} test={test} />
+    ? <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={onSetShippingData}/>
     : <PaymentForm checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} shippingData={shippingData} onCaptureCheckout={onCaptureCheckout} />);
 
   return (

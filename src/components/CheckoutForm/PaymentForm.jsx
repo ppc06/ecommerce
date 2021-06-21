@@ -42,7 +42,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
 
   return (
     <>
-      <Review checkoutToken={checkoutToken} />
+      <Review checkoutToken={checkoutToken} shippingData={shippingData}/>
       <Divider />
       <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>Payment method</Typography>
       <Elements stripe={stripePromise}>
@@ -53,7 +53,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button variant="outlined" onClick={backStep}>Back</Button>
               <Button type="submit" variant="contained" disabled={!stripe} color="primary">
-                Pay {checkoutToken.live.subtotal.formatted_with_symbol}
+                Pay ${(checkoutToken.live.subtotal.raw + shippingData.shipping_method?.price.raw??0).toFixed(2)}
               </Button>
             </div>
           </form>
