@@ -15,24 +15,10 @@ const publicRoutes = [
   {
     path: "/cart",
     component: Cart,
-    meta: {
-      breadcrumb: [
-        { title: 'Home', url: '/' },
-        { title: 'Cart' }
-      ],
-      pageTitle: 'Cart',
-    }
   },
   {
     path: "/checkout",
     component: Checkout,
-    meta: {
-      breadcrumb: [
-        { title: 'Home', url: '/' },
-        { title: 'Checkout' }
-      ],
-      pageTitle: 'Checkout',
-    }
   },
   {
     path: "/product/:id",
@@ -41,7 +27,7 @@ const publicRoutes = [
       breadcrumb: [
         { title: 'Home', url: '/' },
         { title: 'Products', url: '/products' },
-        { title: 'Preview' }
+        { title: 'Product' }
       ],
       pageTitle: 'Preview',
     }
@@ -49,34 +35,14 @@ const publicRoutes = [
   {
     path: "/products",
     component: Products,
-    meta: {
-      breadcrumb: [
-        { title: 'Home', url: '/' },
-        { title: 'Products'},
-      ],
-      pageTitle: 'Products',
-    }
   },
   {
     path: "/auth",
     component: Auth,
-    meta: {
-      breadcrumb: [
-        { title: 'Home', url: '/' },
-        { title: 'Authorization'},
-      ],
-      pageTitle: 'Authorization',
-    }
   },
   {
     path: "/",
     component: Home,
-    meta: {
-      breadcrumb: [
-        { title: 'Home' },
-      ],
-      pageTitle: 'Home',
-    }
   },
 ];
 
