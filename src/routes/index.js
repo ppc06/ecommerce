@@ -12,12 +12,72 @@ const authProtectedRoutes = [
 
 // None Authorized pages
 const publicRoutes = [
-  { path: "/cart", component: Cart },
-  { path: "/checkout", component: Checkout },
-  { path: "/product/:id", component: PreviewProduct },
-  { path: "/products", component: Products },
-  { path: "/auth", component: Auth },
-  { path: "/", component: Home },
+  {
+    path: "/cart",
+    component: Cart,
+    meta: {
+      breadcrumb: [
+        { title: 'Home', url: '/' },
+        { title: 'Cart' }
+      ],
+      pageTitle: 'Cart',
+    }
+  },
+  {
+    path: "/checkout",
+    component: Checkout,
+    meta: {
+      breadcrumb: [
+        { title: 'Home', url: '/' },
+        { title: 'Checkout' }
+      ],
+      pageTitle: 'Checkout',
+    }
+  },
+  {
+    path: "/product/:id",
+    component: PreviewProduct,
+    meta: {
+      breadcrumb: [
+        { title: 'Home', url: '/' },
+        { title: 'Products', url: '/products' },
+        { title: 'Preview' }
+      ],
+      pageTitle: 'Preview',
+    }
+  },
+  {
+    path: "/products",
+    component: Products,
+    meta: {
+      breadcrumb: [
+        { title: 'Home', url: '/' },
+        { title: 'Products'},
+      ],
+      pageTitle: 'Products',
+    }
+  },
+  {
+    path: "/auth",
+    component: Auth,
+    meta: {
+      breadcrumb: [
+        { title: 'Home', url: '/' },
+        { title: 'Authorization'},
+      ],
+      pageTitle: 'Authorization',
+    }
+  },
+  {
+    path: "/",
+    component: Home,
+    meta: {
+      breadcrumb: [
+        { title: 'Home' },
+      ],
+      pageTitle: 'Home',
+    }
+  },
 ];
 
 export { authProtectedRoutes, publicRoutes };
