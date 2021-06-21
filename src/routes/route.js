@@ -7,6 +7,7 @@ const AppRoute = ({
                       component: Component,
                       isAuthProtected,
                       breadcrumb,
+                      pageTitle,
                       ...rest
                   }) => (
     <Route
@@ -39,7 +40,7 @@ const AppRoute = ({
             console.log('isAuth', isAuthProtected, rest.path);
             return (
                 <>
-                    { breadcrumb && <Breadcrumb breadcrumb={breadcrumb} />}
+                    {breadcrumb && <Breadcrumb breadcrumb={breadcrumb} pageTitle={pageTitle}/>}
                     <Component {...props}/>
                 </>
             );

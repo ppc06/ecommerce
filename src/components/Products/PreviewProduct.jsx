@@ -4,7 +4,7 @@ import {Link, Typography} from '@material-ui/core';
 
 import useStyles from './styles';
 import {commerce} from "../../lib/commerce";
-import {fetchCart} from "../../store/actions";
+import {fetchCart, setProduct} from "../../store/actions";
 
 const Product = ({match, history}) => {
     const [quality, setQuality] = useState(1);
@@ -14,6 +14,8 @@ const Product = ({match, history}) => {
 
     const product = products.find(p => p.id == match.params.id);
     if (!product) return 'Loading';
+
+    dispatch(setProduct(product));
 
     // Relative Products
     const other_products = product.related_products.slice(0, 4);

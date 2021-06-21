@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {CssBaseline} from '@material-ui/core';
-import {BrowserRouter as Router, Switch} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {Switch} from 'react-router-dom';
 import firebase from "firebase/app";
 // Import Routes
 import {authProtectedRoutes, publicRoutes} from "./routes/";
@@ -24,6 +23,7 @@ firebase.initializeApp({
 
 const App = ({history}) => {
     const dispatch = useDispatch();
+    const current_product = useSelector((state) => state.product);
 
     useEffect(() => {
         // Fetch Proudcts and Cart From Commerce.js When only Authorized
@@ -51,6 +51,7 @@ const App = ({history}) => {
                         key={idx}
                         isAuthProtected={false}
                         breadcrumb={route.meta?.breadcrumb}
+                        pageTitle={current_product?.name??route.pageTitle}
                     />
                 ))}
             </Switch>

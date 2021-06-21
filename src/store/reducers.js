@@ -1,8 +1,9 @@
-import { SET_PRODUCTS, SET_CART } from "./actionTypes";
+import {SET_PRODUCTS, SET_CART, SET_PROUDCT} from "./actionTypes";
 
 const INIT_STATE = {
     products: [],
-    cart: {}
+    cart: {},
+    product: null,
 }
 
 const index = (state = INIT_STATE, action) => {
@@ -12,6 +13,11 @@ const index = (state = INIT_STATE, action) => {
                 ...state,
                 products: action.payload
             };
+        case SET_PROUDCT:
+            return {
+                ...state,
+                product: action.payload
+            }
         case SET_CART:
             return {
                 ...state,

@@ -27,9 +27,8 @@ const publicRoutes = [
       breadcrumb: [
         { title: 'Home', url: '/' },
         { title: 'Products', url: '/products' },
-        { title: 'Product' }
       ],
-      pageTitle: 'Preview',
+      pageTitle: 'Product',
     }
   },
   {

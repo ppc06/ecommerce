@@ -1,4 +1,4 @@
-import { SET_PRODUCTS, SET_CART, FETCH_CART, FETCH_PRODUCTS } from "./actionTypes";
+import {SET_PRODUCTS, SET_CART, FETCH_CART, FETCH_PRODUCTS, SET_PROUDCT} from "./actionTypes";
 
 export const setProducts = products => ({
     type: SET_PRODUCTS,
@@ -17,4 +17,8 @@ export const setProducts = products => ({
   export const fetchProducts = () => ({
     type: FETCH_PRODUCTS
   })
-  
+
+export const setProduct = product => ({
+    type: SET_PROUDCT,
+    payload: product
+})

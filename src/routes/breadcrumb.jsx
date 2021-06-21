@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronRight } from '@material-ui/icons';
 
-export default ({ breadcrumb }) => (
+export default ({ breadcrumb, pageTitle }) => (
   <div className={'breadcrumb'}>
       { breadcrumb.map((r) => {
           if(r.url){
@@ -14,5 +14,8 @@ export default ({ breadcrumb }) => (
           }
       })
       }
+    {
+      pageTitle && <span>{pageTitle}</span>
+    }
   </div>
 );
